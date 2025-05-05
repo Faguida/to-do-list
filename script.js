@@ -3,11 +3,13 @@ document.addEventListener("DOMContentLoaded", function() {
     const addTaskButton = document.getElementById("addTask");
     const taskList = document.getElementById("taskList");
 
+    // Charger les tâches depuis localStorage
     function loadTasks() {
         const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
         tasks.forEach(task => addTask(task.text, task.completed));
     }
 
+    // Sauvegarder les tâches dans localStorage
     function saveTasks() {
         const tasks = [];
         document.querySelectorAll("li").forEach(task => {
@@ -19,22 +21,25 @@ document.addEventListener("DOMContentLoaded", function() {
         localStorage.setItem("tasks", JSON.stringify(tasks));
     }
 
+    // Ajouter une nouvelle tâche
     function addTask(text, completed = false) {
         if (text.trim() === "") return;
 
         const li = document.createElement("li");
-        const span = document.createElement("span");
-        span.textContent = text;
-        li.appendChild(span);
 
-        const checkButton = document.createElement("button");
-        checkButton.textContent = "✔";
-        checkButton.classList.add("check");
-        checkButton.addEventListener("click", () => {
+        // Case à cocher
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.checked = completed;
+        checkbox.addEventListener("change", () => {
             li.classList.toggle("completed");
             saveTasks();
         });
 
+        const span = document.createElement("span");
+        span.textContent = text;
+
+        // Bouton pour supprimer la tâche
         const deleteButton = document.createElement("button");
         deleteButton.textContent = "❌";
         deleteButton.classList.add("delete");
@@ -43,7 +48,8 @@ document.addEventListener("DOMContentLoaded", function() {
             saveTasks();
         });
 
-        li.appendChild(checkButton);
+        li.appendChild(checkbox);
+        li.appendChild(span);
         li.appendChild(deleteButton);
         if (completed) li.classList.add("completed");
 
@@ -51,11 +57,13 @@ document.addEventListener("DOMContentLoaded", function() {
         saveTasks();
     }
 
+    // Ajouter une tâche via le bouton
     addTaskButton.addEventListener("click", () => {
         addTask(taskInput.value);
         taskInput.value = "";
     });
 
+    // Ajouter une tâche en appuyant sur "Enter"
     taskInput.addEventListener("keypress", (event) => {
         if (event.key === "Enter") {
             addTask(taskInput.value);
@@ -63,5 +71,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
+    // Charger les tâches au démarrage
     loadTasks();
 });
