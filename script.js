@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         const checkButton = document.createElement("button");
         checkButton.textContent = "✔";
+        checkButton.classList.add("check");
         checkButton.addEventListener("click", () => {
             li.classList.toggle("completed");
             saveTasks();
@@ -36,6 +37,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         const deleteButton = document.createElement("button");
         deleteButton.textContent = "❌";
+        deleteButton.classList.add("delete");
         deleteButton.addEventListener("click", () => {
             li.remove();
             saveTasks();

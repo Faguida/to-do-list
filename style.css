@@ -1,4 +1,3 @@
-/* Styles généraux */
 body {
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(135deg, #2196F3, #E91E63);
@@ -11,7 +10,6 @@ body {
     color: #fff;
 }
 
-/* Conteneur principal */
 .container {
     width: 400px;
     background: #fff;
@@ -22,9 +20,8 @@ body {
     color: #333;
 }
 
-/* Champ de saisie */
 #taskInput {
-    width: calc(100% - 20px);
+    width: 80%;
     padding: 12px;
     border: 2px solid #ddd;
     border-radius: 5px;
@@ -37,7 +34,6 @@ body {
     border-color: #2196F3;
 }
 
-/* Bouton Ajouter */
 #addTask {
     background: #2196F3;
     color: white;
@@ -54,7 +50,6 @@ body {
     background: #1769aa;
 }
 
-/* Liste des tâches */
 ul {
     list-style: none;
     padding: 0;
@@ -76,14 +71,12 @@ li:hover {
     transform: scale(1.02);
 }
 
-/* Tâche complétée */
 .completed {
     text-decoration: line-through;
     color: gray;
     background: rgba(0, 0, 0, 0.1);
 }
 
-/* Boutons d'action */
 button {
     padding: 8px 12px;
     border: none;
@@ -105,27 +98,4 @@ button:hover {
 .delete {
     background: #E91E63;
     color: white;
-}
-
-/* Animation de fade-in */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-li {
-    animation: fadeIn 0.5s ease-in-out;
-}
-
-/* Responsive */
-@media (max-width: 480px) {
-    .container {
-        width: 90%;
-    }
 }
